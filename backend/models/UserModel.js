@@ -1,25 +1,30 @@
-const {Sequelize, DataTypes, STRING, BOOLEAN, DATE} = require('sequelize')
+const {DataTypes, STRING, BOOLEAN, DATE, UUID, Sequelize} = require('sequelize')
 const sequelize = require('../db')
 
 const User = sequelize.define('User', {
     user_identifier: {
-        DataTypes: STRING,
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         unique: true
     },
     user_nickname: {
-        DataTypes: STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     user_profile_url: {
-        DataTypes: STRING
+        type: DataTypes.STRING
     },
     deleted: {
-        DataTypes: BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false
     },
-    created_at: {
-        DataTypes: DATE,
-        defaultValue: Sequelize.fn()
-    }
+}, {
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: false
 })
+
+sequelize.sync({force: false})
+
+module.exports = User
