@@ -13,3 +13,14 @@
   width: 100vW;
 }
 
+.channel-wrap {
+  height: 100%;
+  display: flex;
+}
+.channel-list {
+  float: left;
+}
+
+.channel-chat {
+  width: 76%;
+}
