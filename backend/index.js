@@ -4,8 +4,8 @@ const dotenv = require('dotenv').config()
 const port = process.env.PORT || 3000
 const sequelize = require('./db')
 const UserRoute = require('./routes/UserRoute')
+const ChannelRoute = require('./routes/ChannelRoute')
 const app = express()
-
 
 app.use(cors({
     origin: true,
@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/', UserRoute)
+app.use('/', ChannelRoute)
 
 app.listen(port, async () => {
     console.log(`Server is listening on ${port}`)

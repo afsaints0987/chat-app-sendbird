@@ -1,5 +1,5 @@
 const User = require('../models/UserModel')
-const fetch = require('node-fetch')
+// const fetch = require('node-fetch')
 
 
 const createUser = async (req, res) => {

@@ -1,4 +1,4 @@
-const {DataTypes, STRING, BOOLEAN, DATE, UUID, Sequelize} = require('sequelize')
+const {DataTypes, Sequelize} = require('sequelize')
 const sequelize = require('../db')
 
 const User = sequelize.define('User', {
