@@ -1,14 +1,11 @@
 const User = require('../models/UserModel')
+const { v4: uuidv4 } = require("uuid");
 // const fetch = require('node-fetch')
 
 
 const createUser = async (req, res) => {
     const {nickname, profile_url} = req.body
     const user_identifier = uuidv4()
-
-    if(!nickname) {
-        res.status(400).json({message: "Please write your nickname"})
-    }
 
     const userData = await User.create({
         user_identifier,
@@ -28,15 +25,17 @@ const updateUser = async (req, res) => {
 
     try {
         const userId = req.params.id;
-        const { updateNickname, updateProfileUrl } = req.body;
+        console.log(userId)
+        const { nickname, profile_url } = req.body;
 
         const updateUserId = await User.findByPk(userId);
+        console.log(updateUserId)
 
         if (!updateUserId) {
           return res.status(400).json({ message: "User not found" });
         }
-        updateUserId.user_nickname = updateNickname || updateUserId.user_nickname;
-        updateUserId.user_profile_url = updateProfileUrl || updateUserId.user_profile_url;
+        updateUserId.user_nickname = nickname || updateUserId.user_nickname;
+        updateUserId.user_profile_url = profile_url || updateUserId.user_profile_url;
 
         await updateUserId.save()
 
