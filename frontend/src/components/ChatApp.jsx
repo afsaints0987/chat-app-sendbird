@@ -3,6 +3,7 @@ import { ChannelListProvider } from "@sendbird/uikit-react/ChannelList/context";
 import { useState } from "react";
 import CustomizedChannelList from "./CustomizedChannelList";
 
+
 const ChatApp = () => {
   const [currentChannel, setCurrentChannel] = useState(null);
   const [activeChannel, setActiveChannel] = useState(null)

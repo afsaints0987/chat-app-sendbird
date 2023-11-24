@@ -7,12 +7,12 @@ import { useState, useEffect } from "react";
 import CustomCreateChannel from "./CustomCreateChannel";
 
 
-
 const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [channels, setChannels] = useState([]);
   const [showCreateChannel, setShowCreateChannel] = useState(false)
   const channelListState = useChannelListContext();
+
 
   useEffect(() => {
     const getChannels = async () => {
@@ -27,7 +27,7 @@ const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
   }, [channelListState.allChannels]);
 
   const renderEditProfile = () => {
-    setShowEditProfile(!showEditProfile);
+    setShowEditProfile(true);
   };
   const closeEditProfile = () => {
     setShowEditProfile(false);
@@ -39,8 +39,6 @@ const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
   const closeCreateChannel = () => {
     setShowCreateChannel(false)
   }
-
-  console.log(channels)
 
   return (
     <div className="channel-list-wrapper">

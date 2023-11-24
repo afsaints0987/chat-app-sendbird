@@ -1,17 +1,17 @@
 const Channel = require('../models/ChannelModel')
 
 const createChannel = async (req, res) => {
+    const {channel_url, chatmate_identifier, created_by_identifier } = req.body
     
     try {
-        const {channel_url, chat_identifier, created_by_identifier } = req.body
         const existingChannel = await Channel.findOne({where: {channel_url}})
         if(existingChannel){
             return res.status(400).json({message: "Channel already exist"})
         }
 
-        const newChannel = await new Channel.create({
+        const newChannel = await Channel.create({
             channel_url,
-            chat_identifier,
+            chatmate_identifier,
             created_by_identifier
         })
 

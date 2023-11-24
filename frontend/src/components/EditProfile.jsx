@@ -17,8 +17,7 @@ const EditProfile = ({ onClose }) => {
   }, [user]);
 
   const { nickname, profileUrl } = userData;
-
-
+  
   const getUserProfile = async () => {
     const updateNickname = nickname;
     const updateProfileUrl = profileUrl;
