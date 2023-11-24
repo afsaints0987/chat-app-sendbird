@@ -4,10 +4,14 @@ import ChannelPreview from '@sendbird/uikit-react/ChannelList/components/Channel
 import { useChannelListContext } from "@sendbird/uikit-react/ChannelList/context";
 import EditProfile from "./EditProfile";
 import { useState, useEffect } from "react";
+import CustomCreateChannel from "./CustomCreateChannel";
+
+
 
 const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [channels, setChannels] = useState([]);
+  const [showCreateChannel, setShowCreateChannel] = useState(false)
   const channelListState = useChannelListContext();
 
   useEffect(() => {
@@ -29,11 +33,21 @@ const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
     setShowEditProfile(false);
   };
 
+  const renderCreateChannel = () => {
+    setShowCreateChannel(true)
+  }
+  const closeCreateChannel = () => {
+    setShowCreateChannel(false)
+  }
+
+  console.log(channels)
+
   return (
     <div className="channel-list-wrapper">
       <div className="channel-list-header">
-        <ChannelListHeader onEdit={renderEditProfile} />
+        <ChannelListHeader onEdit={renderEditProfile} renderIconButton={() => (<button className="render-btn" onClick={renderCreateChannel}>+</button>)}/>
         {showEditProfile && <EditProfile onClose={closeEditProfile} />}
+        {showCreateChannel && <CustomCreateChannel onClose={closeCreateChannel}/>}
       </div>
       <div className="channel-list-preview">
         {channels.map(channel => (
