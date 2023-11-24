@@ -1,18 +1,16 @@
 /* eslint-disable react/prop-types */
 import ChannelListHeader from "@sendbird/uikit-react/ChannelList/components/ChannelListHeader";
-import ChannelPreview from '@sendbird/uikit-react/ChannelList/components/ChannelPreview';
-import { useChannelListContext } from "@sendbird/uikit-react/ChannelList/context";
+import ChannelPreview from "@sendbird/uikit-react/ChannelList/components/ChannelPreview";
 import EditProfile from "./EditProfile";
 import { useState, useEffect } from "react";
 import CustomCreateChannel from "./CustomCreateChannel";
+import { useChannelListContext } from "@sendbird/uikit-react/ChannelList/context";
 
-
-const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
+const CustomizedChannelList = ({handleCurrentChannel}) => {
   const [showEditProfile, setShowEditProfile] = useState(false);
-  const [channels, setChannels] = useState([]);
+  const [channels, setChannels] = useState(null)
   const [showCreateChannel, setShowCreateChannel] = useState(false)
   const channelListState = useChannelListContext();
-
 
   useEffect(() => {
     const getChannels = async () => {
@@ -20,10 +18,6 @@ const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
       setChannels(allChannels);
     };
     getChannels();
-
-    return () => {
-      setChannels([]);
-    };
   }, [channelListState.allChannels]);
 
   const renderEditProfile = () => {
@@ -39,6 +33,10 @@ const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
   const closeCreateChannel = () => {
     setShowCreateChannel(false)
   }
+  if(!channels){
+    return null
+  }
+
 
   return (
     <div className="channel-list-wrapper">
@@ -50,7 +48,7 @@ const CustomizedChannelList = ({activeChannel, handleChannelClick}) => {
       <div className="channel-list-preview">
         {channels.map(channel => (
           <div key={channel._url}>
-            <ChannelPreview channel={channel} renderChannelAction={() => null} onClick={handleChannelClick} isActive={channel === activeChannel}/>
+            <ChannelPreview channel={channel} renderChannelAction={() => null} onClick={() => handleCurrentChannel(channel)}/>
           </div>
         ))}
       </div>
