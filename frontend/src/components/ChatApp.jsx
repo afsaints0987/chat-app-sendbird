@@ -21,17 +21,13 @@ const ChatApp = () => {
     channelChatDiv.style.cssFloat = "right";
   };
 
-  const handleActiveChannel = (channel) => {
-    setActiveChannel(channel)
-  }
-
   return (
     <div className="channel-wrap">
       <div className="channel-list">
         <ChannelListProvider
           onChannelSelect={(channel) => setCurrentChannel(channel)}
         >
-          <CustomizedChannelList activeChannel={activeChannel} handleChannelClick={handleActiveChannel}/>
+          <CustomizedChannelList activeChannel={activeChannel} handleChannelClick={(channel) => setActiveChannel(channel)}/>
         </ChannelListProvider>
       </div>
       <div className="channel-chat">

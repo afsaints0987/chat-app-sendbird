@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* {loading && console.log('Loading...')} */}
+      {loading && console.log('Loading...')}
       <SendBirdProvider
         appId={APP_ID}
         userId={userId}
