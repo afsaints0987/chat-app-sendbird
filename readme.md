@@ -9,11 +9,11 @@
 
 3. The folder has two content the backend and frontend folder
 ### Install Dependencies on frontend
-a. Open the frontend folder
+a. Open the frontend folder<br>
 b. <code>npm install</code>
 
 ### Install Dependencies on backend
-a. Open the backend folder
+a. Open the backend folder<br>
 b. <code>npm install</code>
 
 4. Add the .env
