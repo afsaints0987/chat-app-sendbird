@@ -41,11 +41,11 @@ export const useCreateUser = () => {
     } finally {
       setLoading(false);
     }
-  }, []); // No dependencies, so the function won't be recreated
+  }, []); 
 
   useEffect(() => {
     fetchAndSaveUser();
-  }, [fetchAndSaveUser]);
+  }, []);
 
   return { userData, loading, error };
 };

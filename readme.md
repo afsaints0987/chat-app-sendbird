@@ -1,10 +1,10 @@
 # Chat APP Sendbird
 
 ## How to setup
-1. Git clone the repository to your local machine
+1. Git clone the repository to your local machine<br>
 <code>git clone [github-repo]</code>
 
-2. Open the folder
+2. Open the folder<br>
 <code>cd [github-repo]</code>
 
 3. The folder has two content the backend and frontend folder
@@ -21,7 +21,11 @@ The .env file is available on the zipfile sent to the email, add the necessary t
 
 5. Run the application
 a. For frontend
-<code>npm run dev</code>
+#### For production
+<code>npm run start:production</code>
+
+#### For development
+<code>npm run start:development</code>
 The server will run at localhost:5173
 
 b. For backend

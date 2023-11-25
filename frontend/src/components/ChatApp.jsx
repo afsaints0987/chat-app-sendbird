@@ -5,32 +5,32 @@ import CustomizedChannelList from "./CustomizedChannelList";
 
 const ChatApp = () => {
   const [currentChannel, setCurrentChannel] = useState(null);
+  const [activeChannel, setActiveChannel] = useState(false)
   const currentChannelUrl = currentChannel ? currentChannel.url : "";
   const [showSettings, setShowSettings] = useState(false);
-  let channelChatDiv = document.getElementsByClassName("channel-chat")[0];
-
   
   const renderSettingsBar = () => {
-    channelChatDiv.style.width = "52%";
-    channelChatDiv.style.cssFloat = "left";
+    setShowSettings(true);
   };
 
   const hideSettingsBar = () => {
-    channelChatDiv.style.width = "76%";
-    channelChatDiv.style.cssFloat = "right";
+    setShowSettings(false);
   };
+
 
   const handleCurrentChannel = (channel) => {
     setCurrentChannel(channel)
+    setActiveChannel(true)
   }
 
   return (
     <div className="channel-wrap">
       <div className="channel-list">
-        <ChannelListProvider
-          // onChannelSelect={(channel) => setCurrentChannel(channel)}
-        >
-          <CustomizedChannelList handleCurrentChannel={handleCurrentChannel}/>
+        <ChannelListProvider>
+          <CustomizedChannelList
+            handleCurrentChannel={handleCurrentChannel}
+            activeChannel={activeChannel}
+          />
         </ChannelListProvider>
       </div>
       <div className="channel-chat">
@@ -43,12 +43,15 @@ const ChatApp = () => {
         />
       </div>
       {showSettings && (
-        <div className="channel-settings">
+        <div
+          className={`channel-chat ${
+            showSettings ? "channel-chat-settings" : "channel-chat-default"
+          }`}
+        >
           <ChannelSettings
             channelUrl={currentChannelUrl}
             onCloseClick={() => {
-              setShowSettings(false);
-              hideSettingsBar();
+              hideSettingsBar()
             }}
           />
         </div>

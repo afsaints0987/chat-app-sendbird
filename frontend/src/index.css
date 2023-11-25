@@ -1,11 +1,10 @@
  @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
 
- 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: var(--sendbird-light-primary-500);
+  /* background-color: var(--sendbird-light-primary-500); */
 }
 
 .App {
@@ -23,7 +22,20 @@
 
 .channel-chat {
   width: 76%;
+  transition: width 0.3s ease;
 }
+
+.channel-chat-settings {
+  width: 35%;
+  float: left;
+  transition: all 0.3s ease;
+}
+
+.channel-chat-default {
+  float: right;
+  transition: float 0.3s ease;
+}
+
 
 .render-btn {
   border: none;
