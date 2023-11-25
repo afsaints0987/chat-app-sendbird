@@ -26,11 +26,13 @@ a. For frontend
 
 #### For development
 <code>npm run start:development</code>
-The server will run at localhost:5173
+<br>
+The server will run at http://localhost:5173
 
 b. For backend
 <code>npm run serve</code>
-The server will run at localhost:5500
+<br>
+The server will run at http://localhost:5500
 
 
 ## Enjoy the Application!
